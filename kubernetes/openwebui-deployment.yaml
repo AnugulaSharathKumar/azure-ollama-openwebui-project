@@ -30,11 +30,11 @@ spec:
           value: "http://ollama-service:11434/api"
         resources:
           requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
             memory: "1Gi"
             cpu: "500m"
-          limits:
-            memory: "2Gi"
-            cpu: "1000m"
         volumeMounts:
         - name: openwebui-data
           mountPath: /app/backend/data
@@ -42,14 +42,14 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 60
+          periodSeconds: 20
         readinessProbe:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 30
+          periodSeconds: 10
       volumes:
       - name: openwebui-data
         persistentVolumeClaim:
