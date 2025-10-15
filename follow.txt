@@ -1,16 +1,18 @@
-openwebui-ollama-aks/
+openwebui-aks/
 ├── terraform/
 │   ├── main.tf
 │   ├── variables.tf
 │   ├── outputs.tf
-│   └── providers.tf
+│   ├── providers.tf
+│   └── terraform.tfvars
 ├── kubernetes/
 │   ├── namespace.yaml
 │   ├── ollama-deployment.yaml
 │   ├── openwebui-deployment.yaml
-│   ├── services.yaml
-│   └── ingress.yaml
-├── scripts/
-│   ├── deploy.sh
-│   └── verify.sh
-└── README.md
+│   └── storage-class.yaml
+└── scripts/
+    ├── 01-deploy-infrastructure.sh
+    ├── 02-deploy-applications.sh
+    ├── 03-access-ollama.sh
+    ├── 04-access-webui.sh
+    └── 05-troubleshoot.sh
