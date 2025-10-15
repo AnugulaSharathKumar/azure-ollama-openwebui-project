@@ -1,0 +1,16 @@
+openwebui-ollama-aks/
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── providers.tf
+├── kubernetes/
+│   ├── namespace.yaml
+│   ├── ollama-deployment.yaml
+│   ├── openwebui-deployment.yaml
+│   ├── services.yaml
+│   └── ingress.yaml
+├── scripts/
+│   ├── deploy.sh
+│   └── verify.sh
+└── README.md
