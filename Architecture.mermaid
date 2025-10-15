@@ -1,3 +1,5 @@
+#🏗️ Architecture
+
 graph TB
     USER[User] --> ELB[Azure Load Balancer]
     ELB --> ING[Ingress Controller]
@@ -5,8 +7,8 @@ graph TB
     ING --> OLLAMA[Ollama Pod]
     OPENWEBUI --> OLLAMA_SVC[Ollama Service]
     OLLAMA --> MODEL[(Llama2 Model)]
-    OPENWEBUI --> PVC1[(Open WebUI<br/>Storage)]
-    OLLAMA --> PVC2[(Ollama<br/>Storage)]
+    OPENWEBUI --> PVC1[(Open WebUI Storage)]
+    OLLAMA --> PVC2[(Ollama Storage)]
     
     subgraph K8S_Cluster[Azure Kubernetes Cluster]
         ING
