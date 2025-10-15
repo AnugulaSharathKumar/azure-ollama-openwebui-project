@@ -18,16 +18,21 @@ spec:
       containers:
       - name: ollama
         image: ollama/ollama:latest
+        command: ["ollama"]
+        args: ["serve"]
         ports:
         - containerPort: 11434
           name: ollama
+        env:
+        - name: OLLAMA_HOST
+          value: "0.0.0.0"
         resources:
           requests:
-            memory: "8Gi"
-            cpu: "2000m"
+            memory: "4Gi"
+            cpu: "1000m"
           limits:
-            memory: "12Gi"
-            cpu: "4000m"
+            memory: "6Gi"
+            cpu: "2000m"
         volumeMounts:
         - name: ollama-data
           mountPath: /root/.ollama
@@ -35,14 +40,14 @@ spec:
           httpGet:
             path: /api/tags
             port: 11434
-          initialDelaySeconds: 30
-          periodSeconds: 10
+          initialDelaySeconds: 120
+          periodSeconds: 30
         readinessProbe:
           httpGet:
             path: /api/tags
             port: 11434
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 60
+          periodSeconds: 15
       volumes:
       - name: ollama-data
         persistentVolumeClaim:
