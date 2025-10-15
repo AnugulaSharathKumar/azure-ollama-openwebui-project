@@ -1,0 +1,23 @@
+graph TB
+    USER[User] --> ELB[Azure Load Balancer]
+    ELB --> ING[Ingress Controller]
+    ING --> OPENWEBUI[Open WebUI Pod]
+    ING --> OLLAMA[Ollama Pod]
+    OPENWEBUI --> OLLAMA_SVC[Ollama Service]
+    OLLAMA --> MODEL[(Llama2 Model)]
+    OPENWEBUI --> PVC1[(Open WebUI<br/>Storage)]
+    OLLAMA --> PVC2[(Ollama<br/>Storage)]
+    
+    subgraph K8S_Cluster[Azure Kubernetes Cluster]
+        ING
+        OPENWEBUI
+        OLLAMA
+        OLLAMA_SVC
+    end
+    
+    subgraph Azure_Cloud[Azure Cloud]
+        K8S_Cluster
+        ACR[Azure Container Registry]
+        PVC1
+        PVC2
+    end
